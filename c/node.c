@@ -62,7 +62,7 @@ int remove_last(node_t * head) {
 }
 
 int remove_by_index(node_t ** head, int n) {
-    int j, i = 0;
+    int j;
     long retval = -1;
     node_t * current = *head;
     node_t * temp_node = NULL;
