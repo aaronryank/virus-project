@@ -8,7 +8,7 @@
 int Total_rounds = 0;
 
 /* display stats about simulation */
-void print_data(node_t *cells)
+int print_data(node_t *cells)
 {
     node_t *current = cells;
     int healthy_cells, infected_cells;
@@ -31,18 +31,24 @@ void print_data(node_t *cells)
     print_list(*cells);
 #endif
 
-    /* wait, check if 'i' is pressed
+    return healthy_cells;
+}
+
+/* structure of the simulation */
+int run_simulation(node_t **cells)
+{
+    int retval;
+
+    /* increase round count and display simulation info */
+    Total_rounds++;
+    retval = print_data(*cells);
+
+    /* wait 1 second, then check if 'i' is pressed
      * if so, begin infection        */
     sleep(1);
     if (_kbhit() == 'i') {
         /* add infect() function */
     }
 
-}
-
-/* self-explanatory; run the simulation */
-void run_simulation(node_t **cells)
-{
-    Total_rounds++;
-    print_data(*cells);
+    return retval;
 }

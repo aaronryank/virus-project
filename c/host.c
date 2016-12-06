@@ -10,6 +10,7 @@ int Total_cells;
 int main(int argc, char *argv[])
 {
     node_t *head = NULL;
+    int healthy_cells;
 
     /* set cell size */
     if (argc < 2)
@@ -20,16 +21,24 @@ int main(int argc, char *argv[])
     /* allocate memory for linked list */
     head = malloc(sizeof(node_t));
 
+    /* all cells begin healthy */
+    healthy_cells = Total_cells;
+
     /* initialize linked list with default cell code */
     int i;
     for (i = 0; i < Total_cells; i++)
         push(head, "ACGT");
 
     /* for some reason, every list starts with '0'.
-     * fix this.                                     */
+     * this fixes it.                               */
     pop(&head);
 
-    /* whole thing (currently, print the list) */
-    run_simulation(&head);
+    /* 1. print simulation data
+       2. check for infection
+       3. run cell functions    */
+    while (healthy_cells > 0) {
+        healthy_cells = run_simulation(&head);
+        cell_parse(head);
+    }
     return 0;
 }

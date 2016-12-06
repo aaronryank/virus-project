@@ -1,5 +1,8 @@
 /* simulation.c functions */
-extern void run_simulation(node_t **);
+extern int run_simulation(node_t **);
+
+/* cell.c functions */
+extern void cell_parse(node_t *);
 
 /* _kbhit.c function */
 extern int _kbhit(void);

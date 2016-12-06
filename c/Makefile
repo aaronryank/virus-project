@@ -8,7 +8,7 @@ CFLAGS = -g -Wall
 TARGET = host
 
 # object files to build:
-OBJ = host.o node.o _kbhit.o simulation.o
+OBJ = host.o node.o _kbhit.o simulation.o cell.o
 
 all: $(TARGET)
 
