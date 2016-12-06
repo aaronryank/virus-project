@@ -40,5 +40,6 @@ int main(int argc, char *argv[])
         healthy_cells = run_simulation(&head);
         cell_parse(head);
     }
+
     return 0;
 }

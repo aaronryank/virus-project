@@ -6,12 +6,15 @@
 #include <unistd.h>
 
 int Total_rounds = 0;
+int healthy_cells, infected_cells;
 
 /* display stats about simulation */
-int print_data(node_t *cells)
+void print_data(node_t *cells)
 {
     node_t *current = cells;
-    int healthy_cells, infected_cells;
+
+    /* reset healthy/infected cell counts */
+    healthy_cells = infected_cells = 0;
 
     /* update healthy and infected cell counts */
     while (current != NULL) {
@@ -31,17 +34,14 @@ int print_data(node_t *cells)
     print_list(*cells);
 #endif
 
-    return healthy_cells;
 }
 
 /* structure of the simulation */
 int run_simulation(node_t **cells)
 {
-    int retval;
-
     /* increase round count and display simulation info */
     Total_rounds++;
-    retval = print_data(*cells);
+    print_data(*cells);
 
     /* wait 1 second, then check if 'i' is pressed
      * if so, begin infection        */
@@ -50,5 +50,5 @@ int run_simulation(node_t **cells)
         /* add infect() function */
     }
 
-    return retval;
+    return healthy_cells;
 }
