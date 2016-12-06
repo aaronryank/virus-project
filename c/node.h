@@ -1,10 +1,10 @@
 typedef struct node {
-    long val;
-    struct node *next;
+    char * val;
+    struct node * next;
 } node_t;
 
 extern void print_list(node_t *);
-extern void push(node_t *, long);
-extern int pop(node_t **);
-extern int remove_last(node_t *);
-extern int remove_by_index(node_t **, int);
+extern void push(node_t *, char *);
+extern node_t * pop(node_t **);
+extern node_t * remove_last(node_t *);
+extern node_t * remove_by_index(node_t **, int);

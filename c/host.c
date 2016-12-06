@@ -23,7 +23,7 @@ int main(int argc, char *argv[])
     /* initialize linked list with default cell code */
     int i;
     for (i = 0; i < Total_cells; i++)
-        push(head, 111111111111L);
+        push(head, "ACGT");
 
     /* for some reason, every list starts with '0'.
      * fix this.                                     */

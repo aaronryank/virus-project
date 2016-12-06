@@ -6,12 +6,12 @@ void print_list(node_t * head) {
     node_t * current = head;
 
     while (current != NULL) {
-        printf("%ld\n", current->val);
+        printf("%s\n", current->val);
         current = current->next;
     }
 }
 
-void push(node_t * head, long val) {
+void push(node_t * head, char * val) {
     node_t * current = head;
     while (current->next != NULL) {
         current = current->next;
@@ -19,31 +19,32 @@ void push(node_t * head, long val) {
 
     /* now we can add a new variable */
     current->next = malloc(sizeof(node_t));
+    current->next->val = malloc(sizeof(char*));
     current->next->val = val;
     current->next->next = NULL;
 }
 
-int pop(node_t ** head) {
-    int retval = -1;
+node_t * pop(node_t ** head) {
+    node_t * retval = NULL;
     node_t * next_node = NULL;
 
-    if (*head == NULL) {
-        return -1;
-    }
+    if (*head == NULL)
+        return NULL;
 
     next_node = (*head)->next;
-    retval = (*head)->val;
+    retval = *head;
+    free((*head)->val);
     free(*head);
     *head = next_node;
 
     return retval;
 }
 
-int remove_last(node_t * head) {
-    int retval = 0;
+node_t * remove_last(node_t * head) {
+    node_t * retval = NULL;
     /* if there is only one item in the list, remove it */
     if (head->next == NULL) {
-        retval = head->val;
+        retval = head;
         free(head);
         return retval;
     }
@@ -55,31 +56,29 @@ int remove_last(node_t * head) {
     }
 
     /* now current points to the last item of the list, so let's remove current->next */
-    retval = current->next->val;
+    retval = current->next;
     free(current->next);
     current->next = NULL;
     return retval;
 }
 
-int remove_by_index(node_t ** head, int n) {
+node_t * remove_by_index(node_t ** head, int n) {
     int j;
-    long retval = -1;
+    node_t * retval = NULL;
     node_t * current = *head;
     node_t * temp_node = NULL;
 
-    if (n == 0) {
+    if (n == 0)
         return pop(head);
-    }
 
     for (j = 0; j < n-1; j++) {
-        if (current->next == NULL) {
-            return -1;
-        }
+        if (current->next == NULL)
+            return NULL;
         current = current->next;
     }
 
     temp_node = current->next;
-    retval = temp_node->val;
+    retval = temp_node;
     current->next = temp_node->next;
     free(temp_node);
 
