@@ -13,9 +13,9 @@ int main(int argc, char *argv[])
 
     /* set cell size */
     if (argc < 2)
-        printf("Starting host with default cell size %d.\n", (Total_cells = DEFAULT_START_CELLS));
+        printf("Starting host with default cells %d...\n", (Total_cells = DEFAULT_START_CELLS));
     else
-        printf("Starting host with %d cells.\n", (Total_cells = atoi(argv[1])));
+        printf("Starting host with %d cells...\n", (Total_cells = atoi(argv[1])));
 
     /* allocate memory for linked list */
     head = malloc(sizeof(node_t));

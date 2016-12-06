@@ -1,5 +1,6 @@
 #include "node.h"
 #include "cell.h"
+#include "color.h"
 #include <stdio.h>
 
 int Total_rounds = 0;
@@ -17,10 +18,14 @@ void print_data(node_t *cells)
 	current = current->next;
     }
 
+    clear_screen();
     printf("Round %d (%d Cell%s)\n", Total_rounds, Total_cells, (Total_cells == 1) ? "" : "s");
     printf("Healthy: %d Infected: %d\n", healthy_cells, infected_cells);
 
-    //print_list(*cells);
+#ifdef __TEST__
+    print_list(*cells);
+#endif // __TEST__
+
 }
 
 void run_simulation(node_t **cells)
